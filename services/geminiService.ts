@@ -29,7 +29,7 @@ Wsparcie Wizualne:
 Dla każdego posta wygeneruj Prompt AI (DALL-E/Midjourney) po angielsku.`;
 
 export const generateLinkedInStrategy = async (topic: string, profileInfo: string): Promise<LinkedInPost[]> => {
-  const ai = new GoogleGenAI({ apiKey: import.meta.env.VITE_API_KEY });
+  const ai = new GoogleGenAI({ apiKey: (import.meta.env.VITE_API_KEY as string) ||"" });
   
   const response = await ai.models.generateContent({
     model: 'gemini-3-flash-preview',
@@ -70,7 +70,7 @@ export const generateLinkedInStrategy = async (topic: string, profileInfo: strin
 };
 
 export const regenerateSinglePost = async (topic: string, profileInfo: string, previousPost: LinkedInPost): Promise<LinkedInPost> => {
-  const ai = new GoogleGenAI({ apiKey: import.meta.env.VITE_API_KEY });
+  const ai = new GoogleGenAI({ apiKey: (import.meta.env.VITE_API_KEY as string) ||"" });
   
   const response = await ai.models.generateContent({
     model: 'gemini-3-flash-preview',
@@ -111,7 +111,7 @@ export const regenerateSinglePost = async (topic: string, profileInfo: string, p
 };
 
 export const generateTopicSuggestions = async (profileInfo: string): Promise<TopicSuggestion[]> => {
-  const ai = new GoogleGenAI({ import.meta.env.VITE_API_KEY });
+  const ai = new GoogleGenAI({ (import.meta.env.VITE_API_KEY as string) ||"" });
   
   const response = await ai.models.generateContent({
     model: 'gemini-3-flash-preview',
